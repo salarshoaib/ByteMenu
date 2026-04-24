@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.bytemenu.controller.SeatController"
+      spacing="0" style="-fx-background-color:#F5F5F7;">
+
+    <!-- LEFT: seat grid -->
+    <VBox spacing="0" HBox.hgrow="ALWAYS">
+
+        <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-padding:20 24 14 24;">
+            <VBox spacing="2">
+                <Label text="Reserve a Seat" styleClass="heading-1"/>
+                <Label text="Select a date, time slot, then click an available seat" styleClass="label-muted"/>
+            </VBox>
+        </HBox>
+
+        <!-- Filter row -->
+        <HBox alignment="CENTER_LEFT" spacing="14" style="-fx-padding:0 24 16 24;">
+            <Label text="Date:" style="-fx-font-size:13px;-fx-text-fill:#444;"/>
+            <DatePicker fx:id="datePicker" prefWidth="150"/>
+            <Label text="Time Slot:" style="-fx-font-size:13px;-fx-text-fill:#444;"/>
+            <ComboBox fx:id="slotPicker" prefWidth="160"/>
+            <Button text="Load Seats" styleClass="btn-primary" onAction="#loadSeats"
+                    style="-fx-padding:8 18 8 18;"/>
+        </HBox>
+
+        <!-- Legend -->
+        <HBox spacing="18" style="-fx-padding:0 24 14 24;">
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="  " style="-fx-background-color:#D1E7DD;-fx-background-radius:3;-fx-min-width:18;-fx-min-height:14;"/>
+                <Label text="Available" style="-fx-font-size:11px;-fx-text-fill:#555;"/>
+            </HBox>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="  " style="-fx-background-color:#1F4E79;-fx-background-radius:3;-fx-min-width:18;-fx-min-height:14;"/>
+                <Label text="Selected" style="-fx-font-size:11px;-fx-text-fill:#555;"/>
+            </HBox>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <Label text="  " style="-fx-background-color:#F8D7DA;-fx-background-radius:3;-fx-min-width:18;-fx-min-height:14;"/>
+                <Label text="Booked" style="-fx-font-size:11px;-fx-text-fill:#555;"/>
+            </HBox>
+        </HBox>
+
+        <!-- Seat grid -->
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                    style="-fx-background:transparent;-fx-background-color:transparent;-fx-border-color:transparent;">
+            <padding><Insets right="24" bottom="16" left="24"/></padding>
+            <VBox fx:id="seatArea" spacing="14"/>
+        </ScrollPane>
+    </VBox>
+
+    <!-- RIGHT: Booking panel -->
+    <VBox prefWidth="300" spacing="0"
+          style="-fx-background-color:white;-fx-border-color:#E0E0E0;-fx-border-width:0 0 0 1;">
+        <padding><Insets top="24" right="20" bottom="24" left="20"/></padding>
+
+        <Label text="Booking Summary" styleClass="heading-2"/>
+
+        <Label style="-fx-min-height:1;-fx-background-color:#E8E8E8;"
+               prefHeight="1" maxWidth="260">
+            <VBox.margin><Insets top="12" bottom="12"/></VBox.margin>
+        </Label>
+
+        <HBox style="-fx-padding:0 0 6 0;">
+            <Label text="Date:" style="-fx-text-fill:#555;-fx-font-size:13px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="summaryDate" text="—" style="-fx-font-size:13px;"/>
+        </HBox>
+        <HBox style="-fx-padding:0 0 6 0;">
+            <Label text="Time Slot:" style="-fx-text-fill:#555;-fx-font-size:13px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="summarySlot" text="—" style="-fx-font-size:13px;"/>
+        </HBox>
+        <HBox>
+            <Label text="Seat:" style="-fx-text-fill:#555;-fx-font-size:13px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="summarySeat" text="None selected"
+                   style="-fx-font-weight:bold;-fx-text-fill:#1F4E79;-fx-font-size:13px;"/>
+        </HBox>
+
+        <Button fx:id="btnReserve" text="Confirm Reservation" styleClass="btn-primary"
+                prefWidth="260" onAction="#handleReserve" disable="true">
+            <VBox.margin><Insets top="20"/></VBox.margin>
+        </Button>
+
+        <Label fx:id="reserveMsg" text="" wrapText="true"
+               style="-fx-font-size:12px;-fx-text-fill:#0A5233;">
+            <VBox.margin><Insets top="12"/></VBox.margin>
+        </Label>
+
+        <!-- My upcoming reservations -->
+        <Label text="My Reservations" styleClass="heading-2">
+            <VBox.margin><Insets top="24" bottom="8"/></VBox.margin>
+        </Label>
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                    style="-fx-background:transparent;-fx-background-color:transparent;-fx-border-color:transparent;">
+            <VBox fx:id="myReservationsList" spacing="6"/>
+        </ScrollPane>
+    </VBox>
+
+</HBox>

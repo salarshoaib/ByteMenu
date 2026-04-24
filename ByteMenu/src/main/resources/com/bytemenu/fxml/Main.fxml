@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.bytemenu.controller.MainController"
+      prefWidth="900" prefHeight="620"
+      stylesheets="@../css/style.css">
+
+    <HBox styleClass="title-bar" alignment="CENTER_LEFT" spacing="10">
+        <Label text="● ● ●" style="-fx-text-fill:#888;-fx-font-size:12px;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="ByteMenu — Cafeteria Management System" styleClass="title-bar-label"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="Sprint 3 · v0.3" styleClass="title-bar-label"/>
+    </HBox>
+
+    <HBox styleClass="nav-bar" alignment="CENTER_LEFT" spacing="8">
+        <Label text="ByteMenu" styleClass="nav-label"/>
+        <Label text="  ·  " style="-fx-text-fill:#5588AA;"/>
+        <Button fx:id="btnMenu"     text="Browse Menu"  styleClass="nav-button-active" onAction="#showMenu"/>
+        <Button fx:id="btnOrders"   text="Place Order"  styleClass="nav-button"        onAction="#showOrders"/>
+        <Button fx:id="btnSeats"    text="Reserve Seat" styleClass="nav-button"        onAction="#showSeats"/>
+        <Button fx:id="btnMyOrders" text="My Orders"    styleClass="nav-button"        onAction="#showMyOrders"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <!-- User info: name + wallet balance stacked -->
+        <VBox alignment="CENTER_RIGHT" spacing="0">
+            <Label fx:id="lblUser"    text="Welcome, ..."
+                   style="-fx-text-fill:#AACCEE;-fx-font-size:12px;"/>
+            <Label fx:id="lblBalance" text=""
+                   style="-fx-text-fill:#AAFFCC;-fx-font-size:11px;"/>
+        </VBox>
+        <Button text="Logout" styleClass="nav-button" onAction="#handleLogout"
+                style="-fx-text-fill:#FFAAAA;"/>
+    </HBox>
+
+    <StackPane fx:id="contentArea" VBox.vgrow="ALWAYS"/>
+</VBox>

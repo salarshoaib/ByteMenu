@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.bytemenu.controller.OrderController"
+      spacing="0" style="-fx-background-color:#F5F5F7;">
+
+    <!-- LEFT: Cart items -->
+    <VBox spacing="0" HBox.hgrow="ALWAYS" style="-fx-background-color:#F5F5F7;">
+
+        <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-padding:20 24 14 24;">
+            <VBox spacing="2">
+                <Label text="Your Cart" styleClass="heading-1"/>
+                <Label text="Review items, add customizations, then place your order" styleClass="label-muted"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="← Back to Menu" styleClass="btn-secondary" onAction="#goToMenu"/>
+        </HBox>
+
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                    style="-fx-background:transparent;-fx-background-color:transparent;-fx-border-color:transparent;">
+            <padding><Insets right="24" bottom="16" left="24"/></padding>
+            <VBox fx:id="cartList" spacing="10"/>
+        </ScrollPane>
+
+        <!-- Empty state -->
+        <VBox fx:id="emptyState" alignment="CENTER" spacing="8"
+              style="-fx-padding:60 0 0 0;" visible="false" managed="false">
+            <Label text="🛒" style="-fx-font-size:40px;"/>
+            <Label text="Your cart is empty" style="-fx-font-size:16px;-fx-text-fill:#555;"/>
+            <Label text="Browse the menu and add items to get started" styleClass="label-muted"/>
+            <Button text="Browse Menu" styleClass="btn-primary" onAction="#goToMenu"
+                    style="-fx-margin-top:8px;"/>
+        </VBox>
+
+    </VBox>
+
+    <!-- RIGHT: Order summary -->
+    <VBox prefWidth="300" spacing="0"
+          style="-fx-background-color:white;-fx-border-color:#E0E0E0;-fx-border-width:0 0 0 1;">
+        <padding><Insets top="24" right="20" bottom="24" left="20"/></padding>
+
+        <Label text="Order Summary" styleClass="heading-2"/>
+        <Label style="-fx-min-height:1;-fx-background-color:#E8E8E8;-fx-margin:12 0 12 0;"
+               prefHeight="1" maxWidth="260">
+            <VBox.margin><Insets top="12" bottom="12"/></VBox.margin>
+        </Label>
+
+        <HBox>
+            <Label text="Items:" style="-fx-text-fill:#555;-fx-font-size:13px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblItemCount" text="0" style="-fx-font-size:13px;"/>
+        </HBox>
+
+        <HBox style="-fx-padding:6 0 0 0;">
+            <Label text="Subtotal:" style="-fx-text-fill:#555;-fx-font-size:13px;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblSubtotal" text="Rs. 0" style="-fx-font-size:13px;"/>
+        </HBox>
+
+        <Label style="-fx-min-height:1;-fx-background-color:#E8E8E8;"
+               prefHeight="1" maxWidth="260">
+            <VBox.margin><Insets top="12" bottom="12"/></VBox.margin>
+        </Label>
+
+        <HBox>
+            <Label text="Total:" style="-fx-font-weight:bold;-fx-font-size:15px;-fx-text-fill:#1F4E79;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblTotal" text="Rs. 0"
+                   style="-fx-font-weight:bold;-fx-font-size:15px;-fx-text-fill:#1F4E79;"/>
+        </HBox>
+
+        <Label text="Special Instructions (optional)" styleClass="label-muted">
+            <VBox.margin><Insets top="18" bottom="4"/></VBox.margin>
+        </Label>
+        <TextArea fx:id="orderNotes" promptText="e.g. No spice, extra sauce..."
+                  prefHeight="70" wrapText="true"
+                  style="-fx-font-size:12px;-fx-border-color:#D0D0D5;-fx-border-radius:4;-fx-background-radius:4;"/>
+
+        <Button text="Place Order" styleClass="btn-primary" prefWidth="260"
+                onAction="#handlePlaceOrder">
+            <VBox.margin><Insets top="16"/></VBox.margin>
+        </Button>
+
+        <Button text="Clear Cart" styleClass="btn-danger" prefWidth="260"
+                onAction="#handleClearCart">
+            <VBox.margin><Insets top="8"/></VBox.margin>
+        </Button>
+
+        <Label fx:id="orderMsg" text="" wrapText="true"
+               style="-fx-font-size:12px;-fx-text-fill:#0A5233;">
+            <VBox.margin><Insets top="10"/></VBox.margin>
+        </Label>
+    </VBox>
+
+</HBox>

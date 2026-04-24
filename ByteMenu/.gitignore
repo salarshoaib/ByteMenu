@@ -1,0 +1,19 @@
+# Compiled output
+target/
+*.class
+
+# Database (contains user data — do not commit)
+*.db
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar

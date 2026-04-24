@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.bytemenu.controller.AdminController"
+      prefWidth="900" prefHeight="620"
+      stylesheets="@../css/style.css">
+
+    <!-- Title Bar -->
+    <HBox styleClass="title-bar" alignment="CENTER_LEFT" spacing="10">
+        <Label text="● ● ●" style="-fx-text-fill:#888;-fx-font-size:12px;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="ByteMenu — Admin / Chef Portal" styleClass="title-bar-label"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="Sprint 3 · v0.3" styleClass="title-bar-label"/>
+    </HBox>
+
+    <!-- Nav -->
+    <HBox styleClass="nav-bar" alignment="CENTER_LEFT" spacing="12">
+        <Label text="ByteMenu  ·  Admin / Chef Portal"
+               style="-fx-text-fill:#AACCEE;-fx-font-size:13px;-fx-font-weight:bold;"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="lblStatus" text="" style="-fx-text-fill:#AACCEE;-fx-font-size:11px;"/>
+        <Button text="Logout" styleClass="nav-button" onAction="#handleLogout"
+                style="-fx-text-fill:#FFAAAA;"/>
+    </HBox>
+
+    <!-- Page heading -->
+    <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-padding:16 20 10 20;">
+        <VBox spacing="2">
+            <Label text="All Orders" styleClass="heading-1"/>
+            <Label text="Manage and update order statuses below" styleClass="label-muted"/>
+        </VBox>
+    </HBox>
+
+    <!-- Orders list -->
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                style="-fx-background:transparent;-fx-background-color:#F5F5F7;-fx-border-color:transparent;">
+        <VBox fx:id="ordersList" spacing="0" fillWidth="true"
+              style="-fx-background-color:#F5F5F7;-fx-padding:0 0 16 0;"/>
+    </ScrollPane>
+
+</VBox>

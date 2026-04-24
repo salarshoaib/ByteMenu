@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.bytemenu.controller.LoginController"
+      prefWidth="900" prefHeight="620"
+      stylesheets="@../css/style.css">
+
+    <!-- LEFT PANEL -->
+    <VBox prefWidth="540" spacing="0"
+          style="-fx-background-color:#F5F5F7;">
+
+        <!-- ① Tracker bar — centred -->
+        <VBox fx:id="trackerBar" spacing="4" alignment="CENTER"
+              style="-fx-padding:28 0 0 0;">
+            <Label text="Check Your Order Status:"
+                   style="-fx-font-size:11px;-fx-font-weight:bold;-fx-text-fill:#1F4E79;-fx-font-family:Arial;"/>
+            <HBox spacing="8" alignment="CENTER">
+                <TextField fx:id="trackOrderField" promptText="e.g. 1001"
+                           prefWidth="200" onAction="#handleTrackOrder"
+                           style="-fx-font-size:12px;"/>
+                <Button text="Track" onAction="#handleTrackOrder"
+                        style="-fx-background-color:#1F4E79;-fx-text-fill:white;-fx-font-size:11px;
+                               -fx-background-radius:4;-fx-padding:6 12 6 12;-fx-cursor:hand;"/>
+            </HBox>
+        </VBox>
+
+        <!-- Everything else centred -->
+        <VBox alignment="CENTER" VBox.vgrow="ALWAYS" spacing="0">
+            <padding><Insets top="0" right="60" bottom="16" left="60"/></padding>
+
+            <!-- Logo + branding -->
+            <VBox alignment="CENTER" spacing="0">
+                <VBox alignment="CENTER" spacing="4" styleClass="login-logo-box"
+                      prefWidth="64" prefHeight="64" maxWidth="64" maxHeight="64"
+                      style="-fx-background-radius:10;">
+                    <Label text="BM" style="-fx-text-fill:white;-fx-font-size:20px;-fx-font-weight:bold;"/>
+                </VBox>
+                <Label text="ByteMenu"
+                       style="-fx-font-size:20px;-fx-font-weight:bold;-fx-text-fill:#1F4E79;">
+                    <VBox.margin><Insets top="10" bottom="2"/></VBox.margin>
+                </Label>
+                <Label text="Cafeteria Management System" styleClass="label-muted">
+                    <VBox.margin><Insets bottom="14"/></VBox.margin>
+                </Label>
+            </VBox>
+
+            <!-- Tabs -->
+            <HBox prefWidth="320" maxWidth="320" alignment="CENTER">
+                <Button fx:id="btnLoginTab" text="Login" styleClass="tab-toggle-active"
+                        onAction="#showLogin" prefWidth="160"/>
+                <Button fx:id="btnRegisterTab" text="Register" styleClass="tab-toggle"
+                        onAction="#showRegister" prefWidth="160"/>
+            </HBox>
+
+            <!-- LOGIN FORM -->
+            <VBox fx:id="loginForm" spacing="10" prefWidth="320" maxWidth="320" alignment="CENTER_LEFT">
+                <VBox.margin><Insets top="14"/></VBox.margin>
+                <Label text="Email / Username" styleClass="label-muted"/>
+                <TextField fx:id="loginEmail" promptText="e.g. i000000@nu.edu.pk  or  Admin"
+                           prefWidth="320"/>
+                <Label text="Password / Key" styleClass="label-muted"/>
+                <PasswordField fx:id="loginPassword" promptText="Your password  or  admin key"
+                               prefWidth="320"/>
+                <Label fx:id="loginError" text=""
+                       style="-fx-text-fill:#C8372D;-fx-font-size:12px;" wrapText="true"/>
+                <Button text="Log In" styleClass="btn-primary" prefWidth="320"
+                        onAction="#handleLogin" defaultButton="true"/>
+                <Hyperlink text="Don't have an account? Register here" onAction="#showRegister"
+                           style="-fx-text-fill:#1F4E79;-fx-font-size:12px;"/>
+                <Label text="Admin/Chef: username 'Admin' + your key."
+                       style="-fx-font-size:11px;-fx-text-fill:#BBBBBB;-fx-font-family:Arial;"/>
+            </VBox>
+
+            <!-- REGISTER FORM -->
+            <VBox fx:id="registerForm" spacing="10" prefWidth="320" maxWidth="320"
+                  alignment="CENTER_LEFT" visible="false" managed="false">
+                <VBox.margin><Insets top="14"/></VBox.margin>
+                <Label text="Full Name" styleClass="label-muted"/>
+                <TextField fx:id="regName" promptText="e.g. Ahmed Ali" prefWidth="320"/>
+                <Label text="University Email" styleClass="label-muted"/>
+                <TextField fx:id="regEmail" promptText="e.g. i000000@nu.edu.pk" prefWidth="320"/>
+                <Label text="Password" styleClass="label-muted"/>
+                <PasswordField fx:id="regPassword" promptText="Min. 8 characters" prefWidth="320"/>
+                <Label text="Confirm Password" styleClass="label-muted"/>
+                <PasswordField fx:id="regConfirm" promptText="Re-enter password" prefWidth="320"/>
+                <Label fx:id="regError" text=""
+                       style="-fx-text-fill:#C8372D;-fx-font-size:12px;" wrapText="true"/>
+                <Button text="Create Account" styleClass="btn-primary" prefWidth="320"
+                        onAction="#handleRegister"/>
+                <Hyperlink text="Already have an account? Log in here" onAction="#showLogin"
+                           style="-fx-text-fill:#1F4E79;-fx-font-size:12px;"/>
+            </VBox>
+        </VBox>
+
+    </VBox>
+
+    <!-- RIGHT PANEL: Live Order Feed -->
+    <VBox prefWidth="360" styleClass="feed-panel" VBox.vgrow="ALWAYS">
+        <HBox styleClass="feed-header" alignment="CENTER_LEFT" spacing="8">
+            <Label text="🟢" style="-fx-font-size:10px;"/>
+            <Label text="LIVE ORDER FEED" styleClass="feed-header-label"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="ByteMenu · Live" style="-fx-text-fill:#AACCEE;-fx-font-size:11px;"/>
+        </HBox>
+        <ScrollPane fx:id="feedScroll" fitToWidth="true" VBox.vgrow="ALWAYS"
+                    style="-fx-background:transparent;-fx-background-color:transparent;-fx-border-color:transparent;">
+            <VBox fx:id="feedList" spacing="0" fillWidth="true"
+                  style="-fx-background-color:#1a2a3a;"/>
+        </ScrollPane>
+        <HBox style="-fx-background-color:#101820;-fx-padding:6 14 6 14;">
+            <Label text="Orders update every few seconds  •  Live simulation"
+                   style="-fx-text-fill:#446688;-fx-font-size:11px;"/>
+        </HBox>
+    </VBox>
+
+</HBox>

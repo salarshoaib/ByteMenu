@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.bytemenu.controller.OrderStatusController"
+      prefWidth="500" prefHeight="380"
+      alignment="CENTER"
+      style="-fx-background-color:#F5F5F7;"
+      stylesheets="@../css/style.css">
+
+    <padding><Insets top="40" right="60" bottom="40" left="60"/></padding>
+
+    <Label text="ByteMenu" style="-fx-font-size:20px;-fx-font-weight:bold;-fx-text-fill:#1F4E79;-fx-font-family:Arial;">
+        <VBox.margin><Insets bottom="4"/></VBox.margin>
+    </Label>
+    <Label text="Order Status Lookup" style="-fx-font-size:13px;-fx-text-fill:#888;-fx-font-family:Arial;">
+        <VBox.margin><Insets bottom="28"/></VBox.margin>
+    </Label>
+
+    <HBox spacing="8" alignment="CENTER">
+        <TextField fx:id="txtOrderId" promptText="Enter order number"
+                   prefWidth="240" onAction="#handleLookup"
+                   style="-fx-font-size:13px;"/>
+        <Button text="Check Status" onAction="#handleLookup"
+                style="-fx-background-color:#1F4E79;-fx-text-fill:white;-fx-font-size:12px;
+                       -fx-background-radius:4;-fx-padding:7 16 7 16;-fx-cursor:hand;-fx-font-family:Arial;"/>
+    </HBox>
+
+    <Label fx:id="lblResult" text="" wrapText="true" maxWidth="360"
+           style="-fx-font-size:15px;-fx-font-family:Arial;">
+        <VBox.margin><Insets top="20"/></VBox.margin>
+    </Label>
+
+    <Label fx:id="lblOrderInfo" text="" wrapText="true" maxWidth="360"
+           style="-fx-font-size:12px;-fx-text-fill:#888;-fx-font-family:Arial;">
+        <VBox.margin><Insets top="6"/></VBox.margin>
+    </Label>
+
+    <Button text="← Back to Login" onAction="#goBack"
+            style="-fx-background-color:transparent;-fx-text-fill:#1F4E79;-fx-font-size:12px;
+                   -fx-cursor:hand;-fx-font-family:Arial;-fx-underline:true;-fx-border-color:transparent;">
+        <VBox.margin><Insets top="32"/></VBox.margin>
+    </Button>
+
+</VBox>
