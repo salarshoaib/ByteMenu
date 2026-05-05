@@ -1,6 +1,7 @@
 package com.bytemenu.controller;
 
 import com.bytemenu.dao.UserDAO;
+import com.bytemenu.util.CartManager;
 import com.bytemenu.util.SessionManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,6 +51,7 @@ public class MainController {
 
     @FXML
     public void handleLogout() {
+        CartManager.clear();
         SessionManager.logout();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/bytemenu/fxml/Login.fxml"));

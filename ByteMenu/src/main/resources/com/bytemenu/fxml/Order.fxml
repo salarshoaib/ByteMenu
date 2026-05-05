@@ -2,6 +2,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
 
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
@@ -20,21 +21,24 @@
             <Button text="← Back to Menu" styleClass="btn-secondary" onAction="#goToMenu"/>
         </HBox>
 
-        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
-                    style="-fx-background:transparent;-fx-background-color:transparent;-fx-border-color:transparent;">
-            <padding><Insets right="24" bottom="16" left="24"/></padding>
-            <VBox fx:id="cartList" spacing="10"/>
-        </ScrollPane>
+        <StackPane VBox.vgrow="ALWAYS">
+            <ScrollPane fitToWidth="true"
+                        style="-fx-background:transparent;-fx-background-color:transparent;-fx-border-color:transparent;">
+                <padding><Insets right="24" bottom="16" left="24"/></padding>
+                <VBox fx:id="cartList" spacing="10"/>
+            </ScrollPane>
 
-        <!-- Empty state -->
-        <VBox fx:id="emptyState" alignment="CENTER" spacing="8"
-              style="-fx-padding:60 0 0 0;" visible="false" managed="false">
-            <Label text="🛒" style="-fx-font-size:40px;"/>
-            <Label text="Your cart is empty" style="-fx-font-size:16px;-fx-text-fill:#555;"/>
-            <Label text="Browse the menu and add items to get started" styleClass="label-muted"/>
-            <Button text="Browse Menu" styleClass="btn-primary" onAction="#goToMenu"
-                    style="-fx-margin-top:8px;"/>
-        </VBox>
+            <!-- Empty state — centred inside the StackPane so it's never clipped -->
+            <VBox fx:id="emptyState" alignment="CENTER" spacing="8"
+                  visible="false" managed="false" StackPane.alignment="CENTER">
+                <Label text="🛒" style="-fx-font-size:40px;"/>
+                <Label text="Your cart is empty" style="-fx-font-size:16px;-fx-text-fill:#555;"/>
+                <Label text="Browse the menu and add items to get started" styleClass="label-muted"/>
+                <Button text="Browse Menu" styleClass="btn-primary" onAction="#goToMenu">
+                    <VBox.margin><Insets top="8"/></VBox.margin>
+                </Button>
+            </VBox>
+        </StackPane>
 
     </VBox>
 
